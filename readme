@@ -1,0 +1,67 @@
+Php has it's own build-in methods to output content, each method has it's own
+use case. 
+
+echo- Allows us to output data in-place 
+It should not be used before sending headers to the browser.
+This will result in a "Header's already sent..." error.
+
+ex: 
+echo 'Today\'s date is: ' . date('Y-m-d H:i:s') . ' and 
+it is a wonderful day!' . PHP_EOL;
+
+Another way to concatenate strings using commas instead of periods
+with echo, and which does not work with print!
+
+echo 'Today\s date: ', date('Y-m-d H:i:s'), PHP_EOL;
+
+print is also a language construct (not a function), and is 
+slightly slower than echo, so usually people will prefer
+to use echo. The speed difference is insignificant, and there
+might still be times where you want to use print instead. print
+takes a single parameter, and will always return "1".
+
+Print_r and Var_dump 
+In addition to the before mentioned language constructs, we also
+got functions such as print_r and var_dump. Personally I only use 
+these when I am debugging something, as they can be very useful
+when trying to understand the nature of the data you are working
+with.
+
+When used, these functions are often followed by exit, in order 
+to output the content of a variable directly to the client, and 
+not do anything else.
+
+Print_r is useful to output the contents of arrays in a 
+fairly readable plain text format:
+
+$the_duck_family = array('Scrooge McDuck', 'Donald Duck', 'Huey', 'Dewey', 'Louie');
+
+print_r($the_duck_family);
+exit(); 
+# Exit before other code can execute 
+
+Output: 
+Array 
+(
+    [0] => Scrooge Mcduck
+    [1] => Donald Duck
+    [2] => Huey
+    [3] => Dewey
+    [4] => Louie
+)
+
+var_dump($the_duck_family);
+exit()
+# exit before other code can execute
+array(5) {
+  [0]=>
+  string(14) "Scrooge McDuck"
+  [1]=>
+  string(11) "Donald Duck"
+  [2]=>
+  string(4) "Huey"
+  [3]=>
+  string(5) "Dewey"
+  [4]=>
+  string(5) "Louie"
+}
